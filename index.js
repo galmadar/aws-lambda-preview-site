@@ -16,6 +16,8 @@ exports.handler = async (event) => {
     try {
         // Fetch the HTML content of the URL
         const response = await axios.get(url);
+        console.log("got respone", response);
+        
         const html = response.data;
 
         // Parse the HTML with cheerio
