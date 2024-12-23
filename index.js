@@ -19,25 +19,31 @@ exports.handler = async (event) => {
         console.log("got respone", response);
         
         const html = response.data;
+        console.log("got html", html);
 
         // Parse the HTML with cheerio
         const $ = cheerio.load(html);
+        // console.log("got cheerio.load", $);
 
         const title = $('meta[property="og:title"]').attr('content') || $('title').text();
         const description = $('meta[property="og:description"]').attr('content') || $('meta[name="description"]').attr('content');
         const image = $('meta[property="og:image"]').attr('content');
 
+        log({title, description, image});
+
+        const body = JSON.stringify({
+            title,
+            description,
+            image,
+        });
+        
         // Return the extracted metadata
         return {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                title,
-                description,
-                image,
-            }),
+            body,
         };
     } catch (error) {
         console.error('Error fetching the website:', error.message);
