@@ -2,11 +2,11 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 exports.handler = async (event) => {
-    return {
-        statusCode: 200,
-        body: JSON.stringify({ message: 'Hello World' }),
-    };
-    //console.log({event});
+    // return {
+    //     statusCode: 200,
+    //     body: JSON.stringify({ message: 'Hello World' }),
+    // };
+    // //console.log({event});
     
     const url = event?.url || "https://www.youtube.com/watch?v=xeyyNTyuF8s";
 
