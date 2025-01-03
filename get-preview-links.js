@@ -19,26 +19,26 @@ async function getLinkPreview(url) {
 
         // Get Open Graph title
         result.title = $('meta[property="og:title"]').attr('content') ||
-                      $('meta[name="twitter:title"]').attr('content') ||
-                      $('title').text() ||
-                      '';
+            $('meta[name="twitter:title"]').attr('content') ||
+            $('title').text() ||
+            '';
 
         // Get Open Graph description
         result.description = $('meta[property="og:description"]').attr('content') ||
-                           $('meta[name="twitter:description"]').attr('content') ||
-                           $('meta[name="description"]').attr('content') ||
-                           '';
+            $('meta[name="twitter:description"]').attr('content') ||
+            $('meta[name="description"]').attr('content') ||
+            '';
 
         // Get Open Graph image
         result.image = $('meta[property="og:image"]').attr('content') ||
-                      $('meta[name="twitter:image"]').attr('content') ||
-                      $('link[rel="image_src"]').attr('href') ||
-                      '';
+            $('meta[name="twitter:image"]').attr('content') ||
+            $('link[rel="image_src"]').attr('href') ||
+            '';
 
         // Get favicon
         result.favicon = $('link[rel="icon"]').attr('href') ||
-                        $('link[rel="shortcut icon"]').attr('href') ||
-                        '/favicon.ico';
+            $('link[rel="shortcut icon"]').attr('href') ||
+            '/favicon.ico';
 
         // Handle relative URLs for image and favicon
         if (result.image && !result.image.startsWith('http')) {
@@ -57,13 +57,19 @@ async function getLinkPreview(url) {
 }
 
 // Example usage
-const url = 'https://example.com';
-getLinkPreview(url)
-    .then(preview => {
+
+async function main({ url }) {
+    try {
+        const preview = await getLinkPreview(url)
         if (preview) {
             console.log('Link Preview:', preview);
         }
-    })
-    .catch(error => {
+    }
+    catch (error) {
         console.error('Error:', error);
-    });
+    }
+}
+
+const url = 'https://suno.com';
+main({ url });
+console.log("finish!");
