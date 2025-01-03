@@ -2,7 +2,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 exports.handler = async (event) => {
-    console.log({event});
+    //console.log({event});
     
     const url = event?.url || "https://www.youtube.com/watch?v=xeyyNTyuF8s";
 
@@ -16,20 +16,20 @@ exports.handler = async (event) => {
     try {
         // Fetch the HTML content of the URL
         const response = await axios.get(url);
-        console.log("got respone", response);
+        //console.log("got respone", response);
         
         const html = response.data;
-        console.log("got html", html);
+        //console.log("got html", html);
 
         // Parse the HTML with cheerio
         const $ = cheerio.load(html);
-        // console.log("got cheerio.load", $);
+        //// console.log("got cheerio.load", $);
 
         const title = $('meta[property="og:title"]').attr('content') || $('title').text();
         const description = $('meta[property="og:description"]').attr('content') || $('meta[name="description"]').attr('content');
         const image = $('meta[property="og:image"]').attr('content');
 
-        log({title, description, image});
+        //console.log({title, description, image});
 
         const body = JSON.stringify({
             title,
