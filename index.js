@@ -7,6 +7,7 @@ exports.handler = async (event) => {
     //     body: JSON.stringify({ message: 'Hello World' }),
     // };
     console.log({event});
+    console.log({event});
 
     const url = event?.url;
 
