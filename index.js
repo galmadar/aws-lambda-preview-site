@@ -7,8 +7,9 @@ exports.handler = async (event) => {
     //     body: JSON.stringify({ message: 'Hello World' }),
     // };
     // //console.log({event});
-    
-    const url = event?.url || "https://www.youtube.com/watch?v=xeyyNTyuF8s";
+
+    const url = event?.url;
+
 
     if (!url) {
         return {
@@ -40,7 +41,7 @@ exports.handler = async (event) => {
             description,
             image,
         });
-        
+
         // Return the extracted metadata
         return {
             statusCode: 200,
