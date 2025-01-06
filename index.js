@@ -8,7 +8,8 @@ exports.handler = async (event) => {
     // };
     console.log({event});
 
-    const url = event?.url;
+    const body = JSON.parse(event?.body);
+    const url = body.url;
 
 
     if (!url) {
